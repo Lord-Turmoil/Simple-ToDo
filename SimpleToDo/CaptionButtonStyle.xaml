@@ -1,0 +1,25 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <Style
+        x:Key="CaptionButtonStyle"
+        BasedOn="{StaticResource MaterialDesignFlatMidBgButton}"
+        TargetType="Button">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" Value="0.7" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style
+        x:Key="CloseButtonStyle"
+        BasedOn="{StaticResource CaptionButtonStyle}"
+        TargetType="Button">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#EE0000" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>
