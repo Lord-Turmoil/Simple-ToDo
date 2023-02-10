@@ -1,5 +1,4 @@
-﻿using MaterialDesignThemes.Wpf;
-using Prism.Services.Dialogs;
+﻿using SimpleToDo.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,42 +11,49 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SimpleToDo
+namespace SimpleToDo.Views
 {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	/// Interaction logic for MainView.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class MainView : Window
 	{
-		public MainWindow()
+		public MainView()
 		{
 			InitializeComponent();
+
 			this.MaxHeight = SystemParameters.PrimaryScreenHeight;
 			this.DataContext = new MainViewModel();
 
+			_InitializeEvents();
+		}
+
+		private void _InitializeEvents()
+		{
 			StateChanged += _MainWindowStateChangeRaised;
 
 			colorZone.MouseLeftButtonDown += (s, e) => { this.DragMove(); };
 			colorZone.MouseDoubleClick += (s, e) => { _ChangeWindowState(); };
+
+			btnClose.Click += (s, e) => { SystemCommands.CloseWindow(this); };
+			btnMaximize.Click += (s, e) => { SystemCommands.MaximizeWindow(this); };
+			btnRestore.Click += (s, e) => { SystemCommands.RestoreWindow(this); };
+			btnMinimize.Click += (s, e) => { SystemCommands.MinimizeWindow(this); };
 		}
 
 		private void _MainWindowStateChangeRaised(object? sender, EventArgs e)
 		{
-			_ChangeCaptionButton();
-		}
-
-		private void _ChangeCaptionButton()
-		{
 			if (WindowState == WindowState.Maximized)
 			{
+				mainWindowBorder.BorderThickness = new Thickness(8);
 				btnMaximize.Visibility = Visibility.Collapsed;
 				btnRestore.Visibility = Visibility.Visible;
 			}
 			else
 			{
+				mainWindowBorder.BorderThickness = new Thickness(0);
 				btnMaximize.Visibility = Visibility.Visible;
 				btnRestore.Visibility = Visibility.Collapsed;
 			}
