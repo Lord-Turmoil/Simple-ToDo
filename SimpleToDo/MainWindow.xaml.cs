@@ -30,16 +30,16 @@ namespace SimpleToDo
 
 			StateChanged += _MainWindowStateChangeRaised;
 
-			colorZone.MouseDown += (s, e) => { this.DragMove(); };
-			colorZone.MouseDoubleClick += (s, e) => { _ChangeMainWindowState(); };
+			colorZone.MouseLeftButtonDown += (s, e) => { this.DragMove(); };
+			colorZone.MouseDoubleClick += (s, e) => { _ChangeWindowState(); };
 		}
 
 		private void _MainWindowStateChangeRaised(object? sender, EventArgs e)
 		{
-			_ChangeMainWindowState();
+			_ChangeCaptionButton();
 		}
 
-		private void _ChangeMainWindowState()
+		private void _ChangeCaptionButton()
 		{
 			if (WindowState == WindowState.Maximized)
 			{
@@ -50,6 +50,18 @@ namespace SimpleToDo
 			{
 				btnMaximize.Visibility = Visibility.Visible;
 				btnRestore.Visibility = Visibility.Collapsed;
+			}
+		}
+
+		private void _ChangeWindowState()
+		{
+			if (WindowState == WindowState.Maximized)
+			{
+				SystemCommands.RestoreWindow(this);
+			}
+			else
+			{
+				SystemCommands.MaximizeWindow(this);
 			}
 		}
 	}
