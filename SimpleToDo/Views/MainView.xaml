@@ -28,216 +28,220 @@
     </WindowChrome.WindowChrome>
     <Border x:Name="mainWindowBorder">
         <materialDesign:DialogHost
-        DialogTheme="Inherit"
-        Identifier="RootDialog"
-        SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
+            DialogTheme="Inherit"
+            Identifier="RootDialog"
+            SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
 
-        <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
-            <materialDesign:DrawerHost.LeftDrawerContent>
-                <DockPanel MinWidth="220">
-                    <DockPanel DockPanel.Dock="Top">
-                        <TextBlock
-                            DockPanel.Dock="Left"
-                            FontSize="44"
-                            Foreground="#333333"
-                            Text="Menu" />
-                        <ToggleButton
-                            Margin="16"
-                            HorizontalAlignment="Right"
-                            DockPanel.Dock="Right"
-                            IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}"
-                            Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+            <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
+                <materialDesign:DrawerHost.LeftDrawerContent>
+                    <DockPanel MinWidth="220">
+                        <DockPanel DockPanel.Dock="Top">
+                            <TextBlock
+                                Margin="16"
+                                DockPanel.Dock="Left"
+                                FontSize="24"
+                                FontWeight="Bold"
+                                Text="Menu" />
+                            <ToggleButton
+                                Margin="16"
+                                HorizontalAlignment="Right"
+                                DockPanel.Dock="Right"
+                                IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}"
+                                Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+                        </DockPanel>
+
+                        <ListBox materialDesign:ListBoxItemAssist.CornerRadius="12" ItemsSource="{Binding MenuBars}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                        <materialDesign:PackIcon Margin="16,10" Kind="{Binding Icon}" />
+                                        <TextBlock
+                                            Margin="16,10"
+                                            FontSize="18"
+                                            Text="{Binding Title}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
                     </DockPanel>
+                </materialDesign:DrawerHost.LeftDrawerContent>
+                <DockPanel>
+                    <materialDesign:ColorZone
+                        x:Name="colorZone"
+                        Height="72"
+                        materialDesign:ElevationAssist.Elevation="Dp4"
+                        DockPanel.Dock="Top"
+                        Mode="PrimaryMid">
+                        <DockPanel LastChildFill="False">
+                            <StackPanel Margin="16" Orientation="Horizontal">
+                                <ToggleButton
+                                    x:Name="MenuToggleButton"
+                                    AutomationProperties.Name="HamburgerToggleButton"
+                                    IsChecked="False"
+                                    Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
 
-                    <ListBox ItemsSource="{Binding MenuBars}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Margin="15,10" Kind="{Binding Icon}" />
-                                    <TextBlock Margin="15,10" Text="{Binding Title}" />
+
+                                <Button
+                                    Margin="24,0,0,0"
+                                    materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                    Command="{Binding MovePrevCommand}"
+                                    Content="{materialDesign:PackIcon Kind=ArrowLeft,
+                                                                      Size=24}"
+                                    Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
+                                    Style="{StaticResource MaterialDesignToolButton}"
+                                    ToolTip="Previous Item" />
+
+
+                                <Button
+                                    Margin="16,0,0,0"
+                                    materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                    Command="{Binding MoveNextCommand}"
+                                    Content="{materialDesign:PackIcon Kind=ArrowRight,
+                                                                      Size=24}"
+                                    Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
+                                    Style="{StaticResource MaterialDesignToolButton}"
+                                    ToolTip="Next Item" />
+
+
+                                <Button
+                                    Margin="16,0,0,0"
+                                    materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                    Command="{Binding HomeCommand}"
+                                    Content="{materialDesign:PackIcon Kind=Home,
+                                                                      Size=24}"
+                                    Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
+                                    Style="{StaticResource MaterialDesignToolButton}"
+                                    ToolTip="Home" />
+
+                                <TextBlock
+                                    Margin="16,0,0,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    AutomationProperties.Name="Material Design In XAML Toolkit"
+                                    FontSize="22"
+                                    Text="Simple ToDo" />
+                            </StackPanel>
+
+                            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                                <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
+                                    <StackPanel>
+                                        <Grid Margin="10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Margin="0,0,10,0" Text="Light" />
+                                            <ToggleButton x:Name="DarkModeToggleButton" Grid.Column="1" />
+                                            <TextBlock
+                                                Grid.Column="2"
+                                                Margin="10,0,0,0"
+                                                Text="Dark" />
+                                            <TextBlock
+                                                Grid.Row="1"
+                                                Margin="0,10,10,0"
+                                                Text="Enabled" />
+                                        </Grid>
+                                        <Separator />
+                                        <Button Content="Hello World" />
+                                        <Button Content="Nice Popup" />
+                                        <Button Content="Can't Touch This" IsEnabled="False" />
+                                        <Separator />
+                                        <Button Content="Goodbye" />
+                                    </StackPanel>
+                                </materialDesign:PopupBox>
+                                <GridSplitter Width="4" />
+                                <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
+                                    <Button
+                                        x:Name="btnMinimize"
+                                        Width="72"
+                                        Height="72"
+                                        Command="{Binding OnMinimizeButtonClicked}"
+                                        Style="{DynamicResource CaptionButtonStyle}"
+                                        ToolTip="Minimize">
+                                        <materialDesign:PackIcon
+                                            Width="36"
+                                            Height="36"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Kind="WindowMinimize" />
+                                    </Button>
+                                    <Button
+                                        x:Name="btnMaximize"
+                                        Width="72"
+                                        Height="72"
+                                        Command="{Binding OnMaximizeButtonClicked}"
+                                        Style="{DynamicResource CaptionButtonStyle}"
+                                        ToolTip="Maximize">
+                                        <materialDesign:PackIcon
+                                            Width="36"
+                                            Height="36"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Kind="WindowMaximize" />
+                                    </Button>
+                                    <Button
+                                        x:Name="btnRestore"
+                                        Height="72"
+                                        Command="{Binding OnRestoreButtonClicked}"
+                                        Style="{DynamicResource MaterialDesignFlatMidBgButton}"
+                                        ToolTip="Restore"
+                                        Visibility="Collapsed">
+                                        <materialDesign:PackIcon
+                                            Width="36"
+                                            Height="36"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Kind="WindowRestore" />
+                                    </Button>
+                                    <Button
+                                        x:Name="btnClose"
+                                        Width="72"
+                                        Height="72"
+                                        Command="{Binding OnCloseButtonClicked}"
+                                        Style="{DynamicResource CloseButtonStyle}"
+                                        ToolTip="Close">
+                                        <materialDesign:PackIcon
+                                            Width="36"
+                                            Height="36"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Kind="WindowClose" />
+                                    </Button>
                                 </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                            </StackPanel>
+                        </DockPanel>
+                    </materialDesign:ColorZone>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <ScrollViewer
+                            x:Name="MainScrollViewer"
+                            Grid.Row="1"
+                            materialDesign:ScrollViewerAssist.IsAutoHideEnabled="True"
+                            HorizontalScrollBarVisibility="{Binding SelectedItem.HorizontalScrollBarVisibilityRequirement, FallbackValue=Disabled}"
+                            VerticalScrollBarVisibility="{Binding SelectedItem.VerticalScrollBarVisibilityRequirement, FallbackValue=Disabled}">
+                            <ContentControl
+                                Margin="{Binding MarginRequirement, FallbackValue=16}"
+                                Content="{Binding Content, UpdateSourceTrigger=PropertyChanged, FallbackValue={x:Null}}"
+                                DataContext="{Binding SelectedItem}" />
+                        </ScrollViewer>
+                    </Grid>
 
                 </DockPanel>
-            </materialDesign:DrawerHost.LeftDrawerContent>
-            <DockPanel>
-                <materialDesign:ColorZone
-                    x:Name="colorZone"
-                    Height="72"
-                    materialDesign:ElevationAssist.Elevation="Dp4"
-                    DockPanel.Dock="Top"
-                    Mode="PrimaryMid">
-                    <DockPanel LastChildFill="False">
-                        <StackPanel Margin="16" Orientation="Horizontal">
-                            <ToggleButton
-                                x:Name="MenuToggleButton"
-                                AutomationProperties.Name="HamburgerToggleButton"
-                                IsChecked="False"
-                                Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
-
-
-                            <Button
-                                Margin="24,0,0,0"
-                                materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"
-                                Command="{Binding MovePrevCommand}"
-                                Content="{materialDesign:PackIcon Kind=ArrowLeft,
-                                                                  Size=24}"
-                                Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
-                                Style="{StaticResource MaterialDesignToolButton}"
-                                ToolTip="Previous Item" />
-
-
-                            <Button
-                                Margin="16,0,0,0"
-                                materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"
-                                Command="{Binding MoveNextCommand}"
-                                Content="{materialDesign:PackIcon Kind=ArrowRight,
-                                                                  Size=24}"
-                                Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
-                                Style="{StaticResource MaterialDesignToolButton}"
-                                ToolTip="Next Item" />
-
-
-                            <Button
-                                Margin="16,0,0,0"
-                                materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"
-                                Command="{Binding HomeCommand}"
-                                Content="{materialDesign:PackIcon Kind=Home,
-                                                                  Size=24}"
-                                Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
-                                Style="{StaticResource MaterialDesignToolButton}"
-                                ToolTip="Home" />
-
-                            <TextBlock
-                                Margin="16,0,0,0"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                AutomationProperties.Name="Material Design In XAML Toolkit"
-                                FontSize="22"
-                                Text="Simple ToDo" />
-                        </StackPanel>
-
-                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                            <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
-                                <StackPanel>
-                                    <Grid Margin="10">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                            <RowDefinition />
-                                            <RowDefinition />
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Margin="0,0,10,0" Text="Light" />
-                                        <ToggleButton x:Name="DarkModeToggleButton" Grid.Column="1" />
-                                        <TextBlock
-                                            Grid.Column="2"
-                                            Margin="10,0,0,0"
-                                            Text="Dark" />
-                                        <TextBlock
-                                            Grid.Row="1"
-                                            Margin="0,10,10,0"
-                                            Text="Enabled" />
-                                    </Grid>
-                                    <Separator />
-                                    <Button Content="Hello World" />
-                                    <Button Content="Nice Popup" />
-                                    <Button Content="Can't Touch This" IsEnabled="False" />
-                                    <Separator />
-                                    <Button Content="Goodbye" />
-                                </StackPanel>
-                            </materialDesign:PopupBox>
-                            <GridSplitter Width="4" />
-                            <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
-                                <Button
-                                    x:Name="btnMinimize"
-                                    Width="72"
-                                    Height="72"
-                                    Command="{Binding OnMinimizeButtonClicked}"
-                                    Style="{DynamicResource CaptionButtonStyle}"
-                                    ToolTip="Minimize">
-                                    <materialDesign:PackIcon
-                                        Width="36"
-                                        Height="36"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Kind="WindowMinimize" />
-                                </Button>
-                                <Button
-                                    x:Name="btnMaximize"
-                                    Width="72"
-                                    Height="72"
-                                    Command="{Binding OnMaximizeButtonClicked}"
-                                    Style="{DynamicResource CaptionButtonStyle}"
-                                    ToolTip="Maximize">
-                                    <materialDesign:PackIcon
-                                        Width="36"
-                                        Height="36"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Kind="WindowMaximize" />
-                                </Button>
-                                <Button
-                                    x:Name="btnRestore"
-                                    Height="72"
-                                    Command="{Binding OnRestoreButtonClicked}"
-                                    Style="{DynamicResource MaterialDesignFlatMidBgButton}"
-                                    ToolTip="Restore"
-                                    Visibility="Collapsed">
-                                    <materialDesign:PackIcon
-                                        Width="36"
-                                        Height="36"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Kind="WindowRestore" />
-                                </Button>
-                                <Button
-                                    x:Name="btnClose"
-                                    Width="72"
-                                    Height="72"
-                                    Command="{Binding OnCloseButtonClicked}"
-                                    Style="{DynamicResource CloseButtonStyle}"
-                                    ToolTip="Close">
-                                    <materialDesign:PackIcon
-                                        Width="36"
-                                        Height="36"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Kind="WindowClose" />
-                                </Button>
-                            </StackPanel>
-                        </StackPanel>
-                    </DockPanel>
-                </materialDesign:ColorZone>
-
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <ScrollViewer
-                        x:Name="MainScrollViewer"
-                        Grid.Row="1"
-                        materialDesign:ScrollViewerAssist.IsAutoHideEnabled="True"
-                        HorizontalScrollBarVisibility="{Binding SelectedItem.HorizontalScrollBarVisibilityRequirement, FallbackValue=Disabled}"
-                        VerticalScrollBarVisibility="{Binding SelectedItem.VerticalScrollBarVisibilityRequirement, FallbackValue=Disabled}">
-                        <ContentControl
-                            Margin="{Binding MarginRequirement, FallbackValue=16}"
-                            Content="{Binding Content, UpdateSourceTrigger=PropertyChanged, FallbackValue={x:Null}}"
-                            DataContext="{Binding SelectedItem}" />
-                    </ScrollViewer>
-                </Grid>
-
-            </DockPanel>
-        </materialDesign:DrawerHost>
-    </materialDesign:DialogHost>
+            </materialDesign:DrawerHost>
+        </materialDesign:DialogHost>
     </Border>
-    
+
 
 </Window>
