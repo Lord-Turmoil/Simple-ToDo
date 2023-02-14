@@ -1,5 +1,8 @@
 ﻿using Prism.DryIoc;
 using Prism.Ioc;
+using Prism.Regions;
+using SimpleToDo.Extensions;
+using SimpleToDo.ViewModels;
 using SimpleToDo.Views;
 using System;
 using System.Collections.Generic;
@@ -23,7 +26,10 @@ namespace SimpleToDo
 
 		protected override void RegisterTypes(IContainerRegistry containerRegistry)
 		{
-			// Nothing for now.
+			containerRegistry.RegisterForNavigation<IndexView, IndexViewModel>();
+			containerRegistry.RegisterForNavigation<MemoView, MemoViewModel>();
+			containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
+			containerRegistry.RegisterForNavigation<ToDoView, ToDoViewModel>();
 		}
 	}
 }

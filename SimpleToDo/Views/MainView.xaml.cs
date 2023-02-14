@@ -1,4 +1,7 @@
-﻿using SimpleToDo.ViewModels;
+﻿using DryIoc;
+using Prism.Regions;
+using SimpleToDo.Extensions;
+using SimpleToDo.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +28,9 @@ namespace SimpleToDo.Views
 			InitializeComponent();
 
 			this.MaxHeight = SystemParameters.PrimaryScreenHeight;
-			this.DataContext = new MainViewModel();
+
+			// No need if we use prism?
+			// this.DataContext = new MainViewModel();
 
 			_InitializeEvents();
 		}
@@ -41,6 +46,11 @@ namespace SimpleToDo.Views
 			btnMaximize.Click += (s, e) => { SystemCommands.MaximizeWindow(this); };
 			btnRestore.Click += (s, e) => { SystemCommands.RestoreWindow(this); };
 			btnMinimize.Click += (s, e) => { SystemCommands.MinimizeWindow(this); };
+
+			menuBar.SelectionChanged += (s, e) =>
+			{
+				drawerHost.IsLeftDrawerOpen = false;
+			};
 		}
 
 		private void _MainWindowStateChangeRaised(object? sender, EventArgs e)
@@ -62,13 +72,9 @@ namespace SimpleToDo.Views
 		private void _ChangeWindowState()
 		{
 			if (WindowState == WindowState.Maximized)
-			{
 				SystemCommands.RestoreWindow(this);
-			}
 			else
-			{
 				SystemCommands.MaximizeWindow(this);
-			}
 		}
 	}
 }
