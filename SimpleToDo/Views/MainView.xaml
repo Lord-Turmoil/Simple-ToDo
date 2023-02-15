@@ -73,7 +73,6 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-
                     </DockPanel>
                 </materialDesign:DrawerHost.LeftDrawerContent>
                 <Grid>
