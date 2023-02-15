@@ -17,8 +17,8 @@ namespace SimpleToDo.ViewModels
 		private ObservableCollection<MenuBar> _menuBars;
 		public ObservableCollection<MenuBar> MenuBars
 		{
-			get { return _menuBars; }
 			set { _menuBars = value; RaisePropertyChanged(); }
+			get { return _menuBars; }
 		}
 
 		/// <summary>
@@ -27,7 +27,6 @@ namespace SimpleToDo.ViewModels
 		/// <param name="regionManager">Interface!!!</param>
 		public MainViewModel(IRegionManager regionManager)
 		{
-			_menuBars = new ObservableCollection<MenuBar>();
 			_CreateMenuBar();
 
 			NavigateCommand = new DelegateCommand<MenuBar>(Navigate);
@@ -47,10 +46,13 @@ namespace SimpleToDo.ViewModels
 
 		private void _CreateMenuBar()
 		{
-			MenuBars.Add(new MenuBar("HomeOutline", "Home", "IndexView"));
-			MenuBars.Add(new MenuBar("FormatListChecks", "ToDo", "ToDoView"));
-			MenuBars.Add(new MenuBar("NotebookOutline", "Memo", "MemoView"));
-			MenuBars.Add(new MenuBar("CogOutline", "Settings", "SettingsView"));
+			MenuBars = new ObservableCollection<MenuBar>
+			{
+				new MenuBar("HomeOutline", "Home", "IndexView"),
+				new MenuBar("FormatListChecks", "ToDo", "ToDoView"),
+				new MenuBar("NotebookOutline", "Memo", "MemoView"),
+				new MenuBar("CogOutline", "Settings", "SettingsView")
+			};
 		}
 
 		// For navigation.

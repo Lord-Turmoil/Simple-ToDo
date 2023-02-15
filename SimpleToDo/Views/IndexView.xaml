@@ -4,11 +4,138 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SimpleToDo.Views"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="768"
     d:DesignWidth="1280"
     mc:Ignorable="d">
     <Grid>
-        <TextBlock FontSize="80" Text="IndexView" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Grid.Row="0"
+            Margin="10"
+            FontSize="24"
+            Text="Hello there!" />
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding TaskBars}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="4" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        Margin="15"
+                        Background="{Binding Color}"
+                        CornerRadius="5">
+                        <Grid>
+                            <StackPanel HorizontalAlignment="Left">
+                                <materialDesign:PackIcon
+                                    Width="30"
+                                    Height="30"
+                                    Margin="35,20"
+                                    Kind="{Binding Icon}" />
+                                <TextBlock
+                                    Margin="20,0"
+                                    FontSize="24"
+                                    Text="{Binding Title}" />
+                                <TextBlock
+                                    Margin="20,15"
+                                    FontSize="28"
+                                    FontWeight="Bold"
+                                    Text="{Binding Content}" />
+                            </StackPanel>
+                            <Canvas ClipToBounds="True">
+                                <Border
+                                    Canvas.Top="10"
+                                    Canvas.Right="-50"
+                                    Width="120"
+                                    Height="120"
+                                    Background="White"
+                                    CornerRadius="60"
+                                    Opacity="0.1" />
+                                <Border
+                                    Canvas.Top="80"
+                                    Canvas.Right="-30"
+                                    Width="120"
+                                    Height="120"
+                                    Background="White"
+                                    CornerRadius="60"
+                                    Opacity="0.1" />
+                            </Canvas>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Border
+                Margin="10,10"
+                Background="#BEBEBE"
+                CornerRadius="5"
+                Opacity="0.1" />
+            <DockPanel Margin="10">
+                <DockPanel
+                    VerticalAlignment="Top"
+                    DockPanel.Dock="Top"
+                    LastChildFill="False">
+                    <TextBlock
+                        Margin="10"
+                        FontSize="32"
+                        FontWeight="Bold"
+                        Text="ToDo" />
+                    <Button
+                        Width="40"
+                        Height="40"
+                        Margin="10"
+                        DockPanel.Dock="Right"
+                        Style="{DynamicResource MaterialDesignFloatingActionAccentButton}">
+                        <materialDesign:PackIcon
+                            Width="30"
+                            Height="30"
+                            Kind="Plus" />
+                    </Button>
+                </DockPanel>
+            </DockPanel>
+
+            <Border
+                Grid.Column="1"
+                Margin="10,10"
+                Background="#BEBEBE"
+                CornerRadius="5"
+                Opacity="0.1" />
+            <DockPanel Grid.Column="1" Margin="10">
+                <DockPanel
+                    VerticalAlignment="Top"
+                    DockPanel.Dock="Top"
+                    LastChildFill="False">
+                    <TextBlock
+                        Margin="10"
+                        FontSize="32"
+                        FontWeight="Bold"
+                        Text="ToDo" />
+                    <Button
+                        Width="40"
+                        Height="40"
+                        Margin="10"
+                        DockPanel.Dock="Right"
+                        Style="{DynamicResource MaterialDesignFloatingActionAccentButton}">
+                        <materialDesign:PackIcon
+                            Width="30"
+                            Height="30"
+                            Kind="Plus" />
+                    </Button>
+                </DockPanel>
+            </DockPanel>
+        </Grid>
     </Grid>
 </UserControl>
