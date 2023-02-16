@@ -26,7 +26,7 @@
     mc:Ignorable="d">
 
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="72" />
+        <WindowChrome CaptionHeight="64" />
     </WindowChrome.WindowChrome>
     <Border x:Name="mainWindowBorder">
         <materialDesign:DialogHost
@@ -83,7 +83,7 @@
 
                     <materialDesign:ColorZone
                         x:Name="colorZone"
-                        Height="72"
+                        Height="64"
                         materialDesign:ElevationAssist.Elevation="Dp4"
                         Mode="PrimaryMid">
                         <DockPanel LastChildFill="False">
@@ -173,8 +173,8 @@
                                 <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
                                     <Button
                                         x:Name="btnMinimize"
-                                        Width="72"
-                                        Height="72"
+                                        Width="64"
+                                        Height="64"
                                         Command="{Binding OnMinimizeButtonClicked}"
                                         Style="{DynamicResource CaptionButtonStyle}"
                                         ToolTip="Minimize">
@@ -187,8 +187,8 @@
                                     </Button>
                                     <Button
                                         x:Name="btnMaximize"
-                                        Width="72"
-                                        Height="72"
+                                        Width="64"
+                                        Height="64"
                                         Command="{Binding OnMaximizeButtonClicked}"
                                         Style="{DynamicResource CaptionButtonStyle}"
                                         ToolTip="Maximize">
@@ -201,7 +201,8 @@
                                     </Button>
                                     <Button
                                         x:Name="btnRestore"
-                                        Height="72"
+                                        Width="64"
+                                        Height="64"
                                         Command="{Binding OnRestoreButtonClicked}"
                                         Style="{DynamicResource MaterialDesignFlatMidBgButton}"
                                         ToolTip="Restore"
@@ -215,8 +216,8 @@
                                     </Button>
                                     <Button
                                         x:Name="btnClose"
-                                        Width="72"
-                                        Height="72"
+                                        Width="64"
+                                        Height="64"
                                         Command="{Binding OnCloseButtonClicked}"
                                         Style="{DynamicResource CloseButtonStyle}"
                                         ToolTip="Close">
