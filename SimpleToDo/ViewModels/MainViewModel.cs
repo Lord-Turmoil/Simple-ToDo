@@ -27,9 +27,12 @@ namespace SimpleToDo.ViewModels
 		/// <param name="regionManager">Interface!!!</param>
 		public MainViewModel(IRegionManager regionManager)
 		{
+			_regionManager = regionManager;
+
+			_menuBars = new ObservableCollection<MenuBar>();
 			_CreateMenuBar();
 
-			NavigateCommand = new DelegateCommand<MenuBar>(Navigate);
+			NavigateCommand = new DelegateCommand<MenuBar>(_Navigate);
 			MovePrevCommand = new DelegateCommand(() =>
 			{
 				if (_navigationJournal != null && _navigationJournal.CanGoBack)
@@ -40,37 +43,41 @@ namespace SimpleToDo.ViewModels
 				if (_navigationJournal != null && _navigationJournal.CanGoForward)
 					_navigationJournal.GoForward();
 			});
-
-			_regionManager = regionManager;
+			HomeCommand = new DelegateCommand(() =>
+			{
+				_regionManager.Regions[PrismManager.MainViewRegionName]
+				.RequestNavigate("IndexView", back =>
+				{
+					_navigationJournal = back.Context.NavigationService.Journal;
+				});
+			});
 		}
 
 		private void _CreateMenuBar()
 		{
-			MenuBars = new ObservableCollection<MenuBar>
-			{
-				new MenuBar("HomeOutline", "Home", "IndexView"),
-				new MenuBar("FormatListChecks", "ToDo", "ToDoView"),
-				new MenuBar("NotebookOutline", "Memo", "MemoView"),
-				new MenuBar("CogOutline", "Settings", "SettingsView")
-			};
+			MenuBars.Add(new MenuBar("HomeOutline", "Home", "IndexView"));
+			MenuBars.Add(new MenuBar("FormatListChecks", "ToDo", "ToDoView"));
+			MenuBars.Add(new MenuBar("NotebookOutline", "Memo", "MemoView"));
+			MenuBars.Add(new MenuBar("CogOutline", "Settings", "SettingsView"));
 		}
 
 		// For navigation.
 		public DelegateCommand<MenuBar> NavigateCommand { get; private set; }
 		public DelegateCommand MovePrevCommand { get; private set; }
 		public DelegateCommand MoveNextCommand { get; private set; }
+		public DelegateCommand HomeCommand { get; private set; }
 
 		private readonly IRegionManager _regionManager;
 		private IRegionNavigationJournal? _navigationJournal;
 
-		private void Navigate(MenuBar obj)
+		private void _Navigate(MenuBar obj)
 		{
 			if ((obj == null) || string.IsNullOrWhiteSpace(obj.NameSpace))
 				return;
 
 			_regionManager.Regions[PrismManager.MainViewRegionName]
 				.RequestNavigate(obj.NameSpace, back =>
-				{ 
+				{
 					_navigationJournal = back.Context.NavigationService.Journal;
 				});
 		}
