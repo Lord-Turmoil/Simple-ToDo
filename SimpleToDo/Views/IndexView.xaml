@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         <TextBlock
             Grid.Row="0"
-            Margin="10"
+            Margin="10,20,0,10"
             FontSize="24"
             Text="Hello there!" />
         <ItemsControl Grid.Row="1" ItemsSource="{Binding TaskBars}">

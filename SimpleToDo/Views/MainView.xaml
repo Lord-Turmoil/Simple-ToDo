@@ -64,9 +64,15 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                        <materialDesign:PackIcon Margin="16,10" Kind="{Binding Icon}" />
+                                        <materialDesign:PackIcon
+                                            Width="24"
+                                            Height="24"
+                                            Margin="16,10"
+                                            VerticalAlignment="Center"
+                                            Kind="{Binding Icon}" />
                                         <TextBlock
                                             Margin="16,10"
+                                            VerticalAlignment="Center"
                                             FontSize="18"
                                             Text="{Binding Title}" />
                                     </StackPanel>
