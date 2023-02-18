@@ -71,33 +71,35 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <DockPanel Margin="0,10,0,0" LastChildFill="False">
-                    <TextBox
-                        Width="250"
-                        Margin="20"
-                        VerticalAlignment="Center"
-                        md:HintAssist.Hint="Search Memo..."
-                        md:TextFieldAssist.HasClearButton="True"
-                        DockPanel.Dock="Left"
-                        FontSize="20" />
-                    <Button
-                        Height="48"
-                        Margin="20,0"
-                        Command="{Binding AddCommand}"
-                        DockPanel.Dock="Right"
-                        FontSize="24"
-                        Style="{DynamicResource MaterialDesignRaisedAccentButton}">
-                        <StackPanel Orientation="Horizontal">
-                            <md:PackIcon
-                                Width="24"
-                                Height="24"
-                                VerticalAlignment="Center"
-                                Kind="Add" />
-                            <TextBlock
-                                Margin="10,0,0,0"
-                                VerticalAlignment="Center"
-                                Text="Add Memo" />
-                        </StackPanel>
-                    </Button>
+                    <md:TransitioningContent DockPanel.Dock="Left" OpeningEffect="{md:TransitionEffect Kind=ExpandIn}">
+                        <TextBox
+                            Width="250"
+                            Margin="20"
+                            VerticalAlignment="Center"
+                            md:HintAssist.Hint="Search Memo..."
+                            md:TextFieldAssist.HasClearButton="True"
+                            FontSize="20" />
+                    </md:TransitioningContent>
+                    <md:TransitioningContent DockPanel.Dock="Right" OpeningEffect="{md:TransitionEffect Kind=ExpandIn}">
+                        <Button
+                            Height="48"
+                            Margin="20,0"
+                            Command="{Binding AddCommand}"
+                            FontSize="24"
+                            Style="{DynamicResource MaterialDesignRaisedAccentButton}">
+                            <StackPanel Orientation="Horizontal">
+                                <md:PackIcon
+                                    Width="24"
+                                    Height="24"
+                                    VerticalAlignment="Center"
+                                    Kind="Add" />
+                                <TextBlock
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Text="Add Memo" />
+                            </StackPanel>
+                        </Button>
+                    </md:TransitioningContent>
                 </DockPanel>
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
                     <ItemsControl ItemsSource="{Binding MemoDtos}">

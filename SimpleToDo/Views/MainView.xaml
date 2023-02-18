@@ -6,8 +6,8 @@
     xmlns:ext="clr-namespace:SimpleToDo.Extensions"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:local="clr-namespace:SimpleToDo.Views"
-    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:prism="http://prismlibrary.com/"
     Title="Simple ToDo"
     Width="1280"
@@ -29,13 +29,13 @@
         <WindowChrome CaptionHeight="64" />
     </WindowChrome.WindowChrome>
     <Border x:Name="mainWindowBorder">
-        <materialDesign:DialogHost
+        <md:DialogHost
             DialogTheme="Inherit"
             Identifier="RootDialog"
             SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
 
-            <materialDesign:DrawerHost x:Name="drawerHost" IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
-                <materialDesign:DrawerHost.LeftDrawerContent>
+            <md:DrawerHost x:Name="drawerHost" IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
+                <md:DrawerHost.LeftDrawerContent>
                     <DockPanel MinWidth="220">
                         <DockPanel DockPanel.Dock="Top">
                             <TextBlock
@@ -54,7 +54,7 @@
 
                         <ListBox
                             x:Name="menuBar"
-                            materialDesign:ListBoxItemAssist.CornerRadius="12"
+                            md:ListBoxItemAssist.CornerRadius="12"
                             ItemsSource="{Binding MenuBars}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
@@ -64,7 +64,7 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                        <materialDesign:PackIcon
+                                        <md:PackIcon
                                             Width="24"
                                             Height="24"
                                             Margin="16,10"
@@ -80,17 +80,17 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
                     </DockPanel>
-                </materialDesign:DrawerHost.LeftDrawerContent>
+                </md:DrawerHost.LeftDrawerContent>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <materialDesign:ColorZone
+                    <md:ColorZone
                         x:Name="colorZone"
                         Height="64"
-                        materialDesign:ElevationAssist.Elevation="Dp4"
+                        md:ElevationAssist.Elevation="Dp4"
                         Mode="PrimaryMid">
                         <DockPanel LastChildFill="False">
                             <StackPanel Margin="16" Orientation="Horizontal">
@@ -103,10 +103,10 @@
 
                                 <Button
                                     Margin="24,0,0,0"
-                                    materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                    md:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"
                                     Command="{Binding MovePrevCommand}"
-                                    Content="{materialDesign:PackIcon Kind=ArrowLeft,
-                                                                      Size=24}"
+                                    Content="{md:PackIcon Kind=ArrowLeft,
+                                                          Size=24}"
                                     Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
                                     Style="{StaticResource MaterialDesignToolButton}"
                                     ToolTip="Previous Item" />
@@ -114,10 +114,10 @@
 
                                 <Button
                                     Margin="16,0,0,0"
-                                    materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                    md:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"
                                     Command="{Binding MoveNextCommand}"
-                                    Content="{materialDesign:PackIcon Kind=ArrowRight,
-                                                                      Size=24}"
+                                    Content="{md:PackIcon Kind=ArrowRight,
+                                                          Size=24}"
                                     Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
                                     Style="{StaticResource MaterialDesignToolButton}"
                                     ToolTip="Next Item" />
@@ -125,10 +125,10 @@
 
                                 <Button
                                     Margin="16,0,0,0"
-                                    materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                    md:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}"
                                     Command="{Binding HomeCommand}"
-                                    Content="{materialDesign:PackIcon Kind=Home,
-                                                                      Size=24}"
+                                    Content="{md:PackIcon Kind=Home,
+                                                          Size=24}"
                                     Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
                                     Style="{StaticResource MaterialDesignToolButton}"
                                     ToolTip="Home" />
@@ -143,7 +143,7 @@
                             </StackPanel>
 
                             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                                <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
+                                <md:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                                     <StackPanel>
                                         <Grid Margin="10">
                                             <Grid.ColumnDefinitions>
@@ -174,7 +174,7 @@
                                         <Separator />
                                         <Button Content="Goodbye" />
                                     </StackPanel>
-                                </materialDesign:PopupBox>
+                                </md:PopupBox>
                                 <GridSplitter Width="4" />
                                 <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
                                     <Button
@@ -184,7 +184,7 @@
                                         Command="{Binding OnMinimizeButtonClicked}"
                                         Style="{DynamicResource CaptionButtonStyle}"
                                         ToolTip="Minimize">
-                                        <materialDesign:PackIcon
+                                        <md:PackIcon
                                             Width="36"
                                             Height="36"
                                             HorizontalAlignment="Center"
@@ -198,7 +198,7 @@
                                         Command="{Binding OnMaximizeButtonClicked}"
                                         Style="{DynamicResource CaptionButtonStyle}"
                                         ToolTip="Maximize">
-                                        <materialDesign:PackIcon
+                                        <md:PackIcon
                                             Width="36"
                                             Height="36"
                                             HorizontalAlignment="Center"
@@ -213,7 +213,7 @@
                                         Style="{DynamicResource MaterialDesignFlatMidBgButton}"
                                         ToolTip="Restore"
                                         Visibility="Collapsed">
-                                        <materialDesign:PackIcon
+                                        <md:PackIcon
                                             Width="36"
                                             Height="36"
                                             HorizontalAlignment="Center"
@@ -227,7 +227,7 @@
                                         Command="{Binding OnCloseButtonClicked}"
                                         Style="{DynamicResource CloseButtonStyle}"
                                         ToolTip="Close">
-                                        <materialDesign:PackIcon
+                                        <md:PackIcon
                                             Width="36"
                                             Height="36"
                                             HorizontalAlignment="Center"
@@ -237,11 +237,11 @@
                                 </StackPanel>
                             </StackPanel>
                         </DockPanel>
-                    </materialDesign:ColorZone>
+                    </md:ColorZone>
                     <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static ext:PrismManager.MainViewRegionName}" />
                 </Grid>
-            </materialDesign:DrawerHost>
-        </materialDesign:DialogHost>
+            </md:DrawerHost>
+        </md:DialogHost>
     </Border>
 
 
