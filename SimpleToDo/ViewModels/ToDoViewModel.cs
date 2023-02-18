@@ -19,13 +19,6 @@ namespace SimpleToDo.ViewModels
 			get { return _toDoDtos; }
 		}
 
-		public ToDoViewModel()
-		{
-			_toDoDtos = new ObservableCollection<ToDoDto>();
-			_CreateDefaultToDoList();
-			AddCommand = new DelegateCommand(_Add);
-		}
-
 		/// <summary>
 		/// Properties related to right drawer.
 		/// </summary>
@@ -37,6 +30,14 @@ namespace SimpleToDo.ViewModels
 			get { return _isRightDrawerOpen; }
 		}
 
+		public ToDoViewModel()
+		{
+			_toDoDtos = new ObservableCollection<ToDoDto>();
+			_CreateDefaultToDoList();
+			AddCommand = new DelegateCommand(_Add);
+			IsRightDrawerOpen = false;
+		}
+
 		private void _Add()
 		{
 			IsRightDrawerOpen = !IsRightDrawerOpen;
@@ -46,7 +47,7 @@ namespace SimpleToDo.ViewModels
 		{
 			for (int i = 1; i <= 10; i++)
 			{
-				_toDoDtos.Add(new ToDoDto
+				ToDoDtos.Add(new ToDoDto
 				{
 					Title = "Todo " + i,
 					Content = i.ToString() + " is not completed."
