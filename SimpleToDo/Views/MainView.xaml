@@ -52,10 +52,7 @@
                                 Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
                         </DockPanel>
 
-                        <ListBox
-                            x:Name="menuBar"
-                            md:ListBoxItemAssist.CornerRadius="12"
-                            ItemsSource="{Binding MenuBars}">
+                        <ListBox x:Name="menuBar" ItemsSource="{Binding MenuBars}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
                                     <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="{Binding ElementName=menuBar, Path=SelectedItem}" />

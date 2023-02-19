@@ -30,7 +30,7 @@ namespace SimpleToDo.ViewModels
 			_regionManager = regionManager;
 
 			_menuBars = new ObservableCollection<MenuBar>();
-			_CreateMenuBar();
+			_CreateMenuBars();
 
 			NavigateCommand = new DelegateCommand<MenuBar>(_Navigate);
 			MovePrevCommand = new DelegateCommand(() =>
@@ -53,7 +53,7 @@ namespace SimpleToDo.ViewModels
 			});
 		}
 
-		private void _CreateMenuBar()
+		private void _CreateMenuBars()
 		{
 			MenuBars.Add(new MenuBar("HomeOutline", "Home", "IndexView"));
 			MenuBars.Add(new MenuBar("FormatListChecks", "ToDo", "ToDoView"));
