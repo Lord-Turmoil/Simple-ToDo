@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <md:TransitioningContent OpeningEffect="{md:TransitionEffect Kind=ExpandIn}">
+        <md:TransitioningContent OpeningEffect="{md:TransitionEffect Kind=SlideInFromRight}">
             <TextBlock
                 Grid.Row="0"
                 Margin="10,20,0,10"
