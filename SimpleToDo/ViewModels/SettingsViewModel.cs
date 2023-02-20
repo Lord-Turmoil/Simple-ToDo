@@ -36,9 +36,9 @@ namespace SimpleToDo.ViewModels
 
 		private void _CreateMenuBars()
 		{
-			MenuBars.Add(new MenuBar("Add", "Personalization", "SkinView"));
-			MenuBars.Add(new MenuBar("Add", "System", "SystemView"));
-			MenuBars.Add(new MenuBar("Add", "About", "AboutView"));
+			MenuBars.Add(new MenuBar("PaletteOutline", "Personalization", "SkinView"));
+			MenuBars.Add(new MenuBar("ContentSaveCogOutline", "System", "SystemView"));
+			MenuBars.Add(new MenuBar("InformationOutline", "About", "AboutView"));
 		}
 
 		private void _Navigate(MenuBar obj)

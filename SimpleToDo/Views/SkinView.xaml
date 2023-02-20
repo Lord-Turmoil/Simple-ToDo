@@ -2,7 +2,7 @@
     x:Class="SimpleToDo.Views.SkinView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converters="clr-namespace:MyToDo.Common.Converters"
+    xmlns:converters="clr-namespace:SimpleToDo.Common.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SimpleToDo.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -50,7 +50,7 @@
             Grid.Row="1"
             HorizontalScrollBarVisibility="Disabled"
             VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Swatches}">
+            <ItemsControl HorizontalAlignment="Center" ItemsSource="{Binding Swatches}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type mdc:ISwatch}">
                         <md:TransitioningContent OpeningEffect="{md:TransitionEffect Kind=SlideInFromLeft}">
