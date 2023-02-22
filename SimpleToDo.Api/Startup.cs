@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using SimpleToDo.Api.Context;
+using SimpleToDo.Api.Context.Repository;
 
 namespace SimpleToDo.Api
 {
@@ -18,7 +19,11 @@ namespace SimpleToDo.Api
 			services.AddDbContext<SimpleToDoContext>(option =>
 			{
 				option.UseSqlite(Configuration.GetConnectionString("ToDoConnection"));
-			});
+			}).AddUnitOfWork<SimpleToDoContext>()
+			.AddCustomRepository<ToDo, ToDoRepository>()
+			.AddCustomRepository<Memo, MemoRepository>()
+			.AddCustomRepository<User, UserRepository>();
+
 			services.AddControllers();
 			services.AddSwaggerGen(c =>
 			{
