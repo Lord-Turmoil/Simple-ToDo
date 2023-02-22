@@ -5,7 +5,9 @@ VisualStudioVersion = 17.5.33402.96
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleToDo", "SimpleToDo\SimpleToDo.csproj", "{C5461C54-9A01-434C-80A9-D0F68A5066C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleToDo.Api", "SimpleToDo.Api\SimpleToDo.Api.csproj", "{199F2BDD-778B-420E-BF17-613074ABF523}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleToDo.Api", "SimpleToDo.Api\SimpleToDo.Api.csproj", "{199F2BDD-778B-420E-BF17-613074ABF523}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleToDo.Shared", "SimpleToDo.Shared\SimpleToDo.Shared.csproj", "{A9B5C008-B4EF-4799-B89A-42616507CBB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{199F2BDD-778B-420E-BF17-613074ABF523}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{199F2BDD-778B-420E-BF17-613074ABF523}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{199F2BDD-778B-420E-BF17-613074ABF523}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9B5C008-B4EF-4799-B89A-42616507CBB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9B5C008-B4EF-4799-B89A-42616507CBB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9B5C008-B4EF-4799-B89A-42616507CBB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9B5C008-B4EF-4799-B89A-42616507CBB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
