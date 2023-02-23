@@ -18,13 +18,14 @@ namespace SimpleToDo.Api
 
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddDbContext<SimpleToDoContext>(option =>
-			{
+			services.AddDbContext<SimpleToDoContext>(option => {
 				option.UseSqlite(Configuration.GetConnectionString("ToDoConnection"));
-			}).AddUnitOfWork<SimpleToDoContext>()
-			.AddCustomRepository<ToDo, ToDoRepository>()
-			.AddCustomRepository<Memo, MemoRepository>()
-			.AddCustomRepository<User, UserRepository>();
+			}).AddUnitOfWork<SimpleToDoContext>();
+
+			// I don't know why these won't work...
+			// .AddCustomRepository<ToDo, ToDoRepository>()
+			services.AddCustomRepository<Memo, MemoRepository>();
+			// .AddCustomRepository<User, UserRepository>()
 
 			services.AddTransient<IToDoService, ToDoService>();
 
