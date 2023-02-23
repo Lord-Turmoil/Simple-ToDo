@@ -1,6 +1,4 @@
-﻿
-
-namespace SimpleToDo.Api
+﻿namespace SimpleToDo.Api
 {
 	using Microsoft.EntityFrameworkCore;
 	using System.Threading.Tasks;

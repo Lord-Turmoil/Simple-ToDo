@@ -2,7 +2,6 @@
 using Microsoft.OpenApi.Models;
 using SimpleToDo.Api.Context;
 using SimpleToDo.Api.Context.Repository;
-using SimpleToDo.Api.Context.UnitOfWork;
 using SimpleToDo.Api.Service;
 
 namespace SimpleToDo.Api

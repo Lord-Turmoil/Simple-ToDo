@@ -1,6 +1,4 @@
-﻿
-
-namespace SimpleToDo.Api
+﻿namespace SimpleToDo.Api
 {
 	using System;
 	using System.Collections.Generic;

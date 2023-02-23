@@ -13,34 +13,30 @@
 
 	/// <summary>
 	/// Defines the interfaces for generic repository.
-	/// 为通用存储库定义接口
 	/// </summary>
-	/// <typeparam name="TEntity">The type of the entity.实体类型</typeparam>
+	/// <typeparam name="TEntity">The type of the entity.</typeparam>
 	public interface IRepository<TEntity> where TEntity : class
 	{
 		/// <summary>
 		/// Changes the table name. This require the tables in the same database.
-		/// 更改表名。这需要相同数据库中的表
 		/// </summary>
 		/// <param name="table"></param>
 		/// <remarks>
 		/// This only been used for supporting multiple tables in the same model. This require the tables in the same database.
-		/// 这只用于支持同一个模型中的多个表。这需要相同数据库中的表。
 		/// </remarks>
 		void ChangeTable(string table);
 
 		/// <summary>
 		/// Gets the <see cref="IPagedList{TEntity}"/> based on a predicate, orderby delegate and page information. This method default no-tracking query.
-		/// 基于谓词、orderby委托和页面信息获取<see cref="IPagedList{TEntity}"/>。此方法默认无跟踪查询。
 		/// </summary>
-		/// <param name="predicate">A function to test each element for a condition.用于测试条件的每个元素的函数</param>
-		/// <param name="orderBy">A function to order elements.对元素进行排序的函数</param>
-		/// <param name="include">A function to include navigation properties 包含导航属性的函数</param>
-		/// <param name="pageIndex">The index of page.起始页</param>
-		/// <param name="pageSize">The size of the page.页大小</param>
-		/// <param name="disableTracking"><c>True</c> to disable changing tracking; otherwise, 禁用更改跟踪<c>false</c>. Default to <c>true</c>.</param>
-		/// <param name="ignoreQueryFilters">Ignore query filters 忽略查询过滤器</param>
-		/// <returns>An <see cref="IPagedList{TEntity}"/> that contains elements that satisfy the condition specified by 包含满足指定条件的元素<paramref name="predicate"/>.</returns>
+		/// <param name="predicate">A function to test each element for a condition.</param>
+		/// <param name="orderBy">A function to order elements.</param>
+		/// <param name="include">A function to include navigation properties.</param>
+		/// <param name="pageIndex">The index of page.</param>
+		/// <param name="pageSize">The size of the page.</param>
+		/// <param name="disableTracking"><c>True</c> to disable changing tracking; otherwise, <c>false</c>. Default to <c>true</c>.</param>
+		/// <param name="ignoreQueryFilters">Ignore query filters.</param>
+		/// <returns>An <see cref="IPagedList{TEntity}"/> that contains elements that satisfy the condition specified by <paramref name="predicate"/>.</returns>
 		/// <remarks>This method default no-tracking query.</remarks>
 		IPagedList<TEntity> GetPagedList(Expression<Func<TEntity, bool>> predicate = null,
 										 Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
@@ -52,20 +48,18 @@
 
 		/// <summary>
 		/// Gets the <see cref="IPagedList{TEntity}"/> based on a predicate, orderby delegate and page information. This method default no-tracking query.
-		/// 基于谓词、orderby委托和页面信息获取<see cref="IPagedList{TEntity}"/>。此方法默认无跟踪查询。
 		/// </summary>
-		/// <param name="predicate">A function to test each element for a condition.用于测试条件的每个元素的函数</param>
-		/// <param name="orderBy">A function to order elements.对元素进行排序的函数</param>
-		/// <param name="include">A function to include navigation properties 包含导航属性的函数</param>
-		/// <param name="pageIndex">The index of page.起始页</param>
-		/// <param name="pageSize">The size of the page.页大小</param>
-		/// <param name="disableTracking"><c>True</c> to disable changing tracking;禁用更改跟踪; otherwise, <c>false</c>. Default to <c>true</c>.</param>
+		/// <param name="predicate">A function to test each element for a condition.</param>
+		/// <param name="orderBy">A function to order elements.</param>
+		/// <param name="include">A function to include navigation properties.</param>
+		/// <param name="pageIndex">The index of page.</param>
+		/// <param name="pageSize">The size of the page.</param>
+		/// <param name="disableTracking"><c>True</c> to disable changing tracking; otherwise, <c>false</c>. Default to <c>true</c>.</param>
 		/// <param name="cancellationToken">
 		///     A <see cref="CancellationToken" /> to observe while waiting for the task to complete.
 		/// </param>
-		/// <param name="ignoreQueryFilters">Ignore query filters 忽略查询过滤器</param>
+		/// <param name="ignoreQueryFilters">Ignore query filters.</param>
 		/// <returns>An <see cref="IPagedList{TEntity}"/> that contains elements that satisfy the condition specified by <paramref name="predicate"/>.</returns>
-		/// <remarks>This method default no-tracking query.此方法默认无跟踪查询</remarks>
 		Task<IPagedList<TEntity>> GetPagedListAsync(Expression<Func<TEntity, bool>> predicate = null,
 													Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
 													Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,

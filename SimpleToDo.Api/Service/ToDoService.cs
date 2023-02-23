@@ -1,5 +1,4 @@
 ﻿using SimpleToDo.Api.Context;
-using SimpleToDo.Api.Context.UnitOfWork;
 
 namespace SimpleToDo.Api.Service
 {
