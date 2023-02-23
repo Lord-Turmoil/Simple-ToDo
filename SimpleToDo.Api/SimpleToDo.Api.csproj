@@ -24,8 +24,4 @@
     <ProjectReference Include="..\SimpleToDo.Shared\SimpleToDo.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>

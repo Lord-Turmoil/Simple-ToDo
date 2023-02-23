@@ -2,6 +2,8 @@
 using Microsoft.OpenApi.Models;
 using SimpleToDo.Api.Context;
 using SimpleToDo.Api.Context.Repository;
+using SimpleToDo.Api.Context.UnitOfWork;
+using SimpleToDo.Api.Service;
 
 namespace SimpleToDo.Api
 {
@@ -23,6 +25,8 @@ namespace SimpleToDo.Api
 			.AddCustomRepository<ToDo, ToDoRepository>()
 			.AddCustomRepository<Memo, MemoRepository>()
 			.AddCustomRepository<User, UserRepository>();
+
+			services.AddTransient<IToDoService, ToDoService>();
 
 			services.AddControllers();
 			services.AddSwaggerGen(c =>
