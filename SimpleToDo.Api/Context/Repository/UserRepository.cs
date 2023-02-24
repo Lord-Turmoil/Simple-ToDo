@@ -5,7 +5,7 @@ namespace SimpleToDo.Api.Context.Repository
 {
 	public class UserRepository : Repository<User>
 	{
-		public UserRepository(DbContext dbContext) : base(dbContext)
+		public UserRepository(SimpleToDoContext dbContext) : base(dbContext)
 		{
 		}
 	}
