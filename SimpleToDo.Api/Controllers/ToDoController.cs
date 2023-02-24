@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SimpleToDo.Api.Context;
 using SimpleToDo.Api.Service;
+using SimpleToDo.Shared.Dtos;
 
 namespace SimpleToDo.Api.Controllers
 {
@@ -22,12 +23,15 @@ namespace SimpleToDo.Api.Controllers
 		public async Task<ApiResponse> GetAll() => await _service.GetAllAsync();
 
 		[HttpPost]
-		public async Task<ApiResponse> Add([FromBody] ToDo model) => await _service.AddAsync(model);
+		public async Task<ApiResponse> Add([FromBody] ToDoDto model) => await _service.AddAsync(model);
+
+		[HttpPost]
+		public async Task<ApiResponse> Update([FromBody] ToDoDto model) => await _service.UpdateAsync(model);
 
 		[HttpDelete]
 		public async Task<ApiResponse> Delete(int id) => await _service.DeleteAsync(id);
 
-		[HttpPost]
-		public async Task<ApiResponse> Update([FromBody] ToDo model) => await _service.UpdateAsync(model);
+		[HttpDelete]
+		public async Task<ApiResponse> DeleteAll() => await _service.DeleteAllAsync();
 	}
 }

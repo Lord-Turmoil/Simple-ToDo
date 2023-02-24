@@ -1,8 +1,10 @@
 ﻿using Arch.EntityFrameworkCore.UnitOfWork;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using SimpleToDo.Api.Context;
 using SimpleToDo.Api.Context.Repository;
+using SimpleToDo.Api.Extensions;
 using SimpleToDo.Api.Service;
 
 namespace SimpleToDo.Api
@@ -27,9 +29,15 @@ namespace SimpleToDo.Api
 
 			services.AddTransient<IToDoService, ToDoService>();
 
+			// Add auto mapper.
+			var autoMapperConfig = new MapperConfiguration(config => {
+				config.AddProfile(new AutoMapperProfile());
+			});
+			services.AddSingleton(autoMapperConfig.CreateMapper());
+
+			
 			services.AddControllers();
-			services.AddSwaggerGen(c =>
-			{
+			services.AddSwaggerGen(c => {
 				c.SwaggerDoc("v1", new OpenApiInfo() { Title = "SimpleToDo.Api", Version = "v1" });
 			});
 		}
@@ -44,8 +52,7 @@ namespace SimpleToDo.Api
 			app.UseRouting();
 			app.UseAuthorization();
 
-			app.UseEndpoints(endpoints =>
-			{
+			app.UseEndpoints(endpoints => {
 				endpoints.MapControllers();
 				endpoints.MapSwagger();
 			});
