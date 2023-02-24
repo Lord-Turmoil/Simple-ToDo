@@ -1,4 +1,5 @@
-﻿namespace SimpleToDo.Shared.Contact
+﻿/*
+namespace SimpleToDo.Shared.Contact
 {
 
     using System.Collections.Generic;
@@ -52,3 +53,4 @@
         bool HasNextPage { get; }
     }
 }
+*/

@@ -1,4 +1,5 @@
-﻿namespace SimpleToDo.Shared.Contact
+﻿/*
+namespace SimpleToDo.Shared.Contact
 {
     using System;
     using System.Collections.Generic;
@@ -236,3 +237,4 @@
         public static IPagedList<TResult> From<TResult, TSource>(IPagedList<TSource> source, Func<IEnumerable<TSource>, IEnumerable<TResult>> converter) => new PagedList<TSource, TResult>(source, converter);
     }
 }
+*/
