@@ -6,6 +6,7 @@ using SimpleToDo.Api.Context;
 using SimpleToDo.Api.Context.Repository;
 using SimpleToDo.Api.Extensions;
 using SimpleToDo.Api.Service;
+using SimpleToDo.Shared.Dtos;
 
 namespace SimpleToDo.Api
 {
@@ -27,7 +28,7 @@ namespace SimpleToDo.Api
 			.AddCustomRepository<Memo, MemoRepository>()
 			.AddCustomRepository<User, UserRepository>();
 
-			services.AddTransient<IToDoService, ToDoService>();
+			services.AddTransient<IEntityService<ToDoDto>, ToDoService>();
 
 			// Add auto mapper.
 			var autoMapperConfig = new MapperConfiguration(config => {
