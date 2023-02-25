@@ -11,30 +11,11 @@ namespace SimpleToDo.Api.Service
 		{
 		}
 
-		public override async Task<ApiResponse> UpdateAsync(MemoDto model)
+		protected override void UpdateEntity(Memo entity, Memo dbEntity)
 		{
-			try
-			{
-				var dbMemo = _mapper.Map<Memo>(model);
-				var repo = _unitOfWork.GetRepository<Memo>();
-				var memo = await repo.GetFirstOrDefaultAsync(predicate: x => x.ID.Equals(dbMemo.ID));
-
-				if (memo == null)
-					return new ApiResponse("Specified Memo doesn't exist");
-				
-				memo.Title = dbMemo.Title;
-				memo.Content = dbMemo.Content;
-				memo.UpdatedTime = DateTime.Now;
-				repo.Update(memo);
-
-				if (await _unitOfWork.SaveChangesAsync() > 0)
-					return new ApiResponse(memo);
-				return new ApiResponse("Failed to update memo");
-			}
-			catch (Exception ex)
-			{
-				return new ApiResponse(ex.Message);
-			}
+			entity.Title = dbEntity.Title;
+			entity.Content = dbEntity.Content;
+			entity.UpdatedTime = DateTime.Now;
 		}
 	}
 }

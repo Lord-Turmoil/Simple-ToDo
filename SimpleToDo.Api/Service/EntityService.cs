@@ -94,6 +94,31 @@ namespace SimpleToDo.Api.Service
 			}
 		}
 
-		public abstract Task<ApiResponse> UpdateAsync(TEntityDto model);
+		public async Task<ApiResponse> UpdateAsync(TEntityDto model)
+		{
+			try
+			{
+				var dbEntity = _mapper.Map<TEntity>(model);
+				var repo = _unitOfWork.GetRepository<TEntity>();
+				var entity = await repo.GetFirstOrDefaultAsync(predicate: x => x.ID.Equals(dbEntity.ID));
+
+				// Repository may not contain specified data!
+				if (entity == null)
+					return new ApiResponse("Specified Entity doesn't exist");
+
+				UpdateEntity(entity, dbEntity);
+				repo.Update(entity);
+
+				if (await _unitOfWork.SaveChangesAsync() > 0)
+					return new ApiResponse(entity);
+				return new ApiResponse("Failed to update Entity");
+			}
+			catch (Exception ex)
+			{
+				return new ApiResponse(ex.Message);
+			}
+		}
+		
+		protected abstract void UpdateEntity(TEntity entity, TEntity dbEntity);
 	}
 }
