@@ -2,6 +2,7 @@
 using AutoMapper;
 using SimpleToDo.Api.Context;
 using SimpleToDo.Shared.Dtos;
+using SimpleToDo.Shared.Parameters;
 
 namespace SimpleToDo.Api.Service
 {
@@ -67,11 +68,17 @@ namespace SimpleToDo.Api.Service
 			}
 		}
 
-		public async Task<ApiResponse> GetAllAsync()
+		public async Task<ApiResponse> GetAllAsync(QueryParameter parameter)
 		{
 			try
 			{
-				var entities = await _unitOfWork.GetRepository<TEntity>().GetAllAsync();
+				var repo = _unitOfWork.GetRepository<TEntity>();
+				var entities = await repo.GetPagedListAsync(
+					predicate: x => string.IsNullOrWhiteSpace(parameter.Search) ? true : MatchSearch(x, parameter.Search),
+					pageSize: parameter.PageSize,
+					pageIndex: parameter.PageIndex,
+					orderBy: result => result.OrderByDescending(x => x.CreatedTime));
+
 				return new ApiResponse(entities);
 			}
 			catch (Exception ex)
@@ -119,6 +126,7 @@ namespace SimpleToDo.Api.Service
 			}
 		}
 		
+		protected abstract bool MatchSearch(TEntity entity, string search);
 		protected abstract void UpdateEntity(TEntity entity, TEntity dbEntity);
 	}
 }

@@ -1,8 +1,10 @@
-﻿namespace SimpleToDo.Api.Service
+﻿using SimpleToDo.Shared.Parameters;
+
+namespace SimpleToDo.Api.Service
 {
 	public interface IBaseService<TEntityDto>
 	{
-		Task<ApiResponse> GetAllAsync();
+		Task<ApiResponse> GetAllAsync(QueryParameter parameter);
 		Task<ApiResponse> GetAsync(int id);
 
 		Task<ApiResponse> AddAsync(TEntityDto model);

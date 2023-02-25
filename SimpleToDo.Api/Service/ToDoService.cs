@@ -12,6 +12,11 @@ namespace SimpleToDo.Api.Service
 		{
 		}
 
+		protected override bool MatchSearch(ToDo entity, string search)
+		{
+			return entity.Title.Contains(search) || entity.Content.Contains(search);
+		}
+
 		protected override void UpdateEntity(ToDo entity, ToDo dbEntity)
 		{
 			entity.Title = dbEntity.Title;

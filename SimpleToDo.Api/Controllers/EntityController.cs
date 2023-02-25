@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SimpleToDo.Api.Service;
+using SimpleToDo.Shared.Parameters;
 
 namespace SimpleToDo.Api.Controllers
 {
@@ -18,7 +19,7 @@ namespace SimpleToDo.Api.Controllers
 		public async Task<ApiResponse> Get(int id) => await _service.GetAsync(id);
 
 		[HttpGet]
-		public async Task<ApiResponse> GetAll() => await _service.GetAllAsync();
+		public async Task<ApiResponse> GetAll([FromQuery] QueryParameter parameter) => await _service.GetAllAsync(parameter);
 
 		[HttpPost]
 		public async Task<ApiResponse> Add([FromBody] TEntityDto model) => await _service.AddAsync(model);
