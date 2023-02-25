@@ -19,6 +19,9 @@ namespace SimpleToDo.Api.Service
 				var repo = _unitOfWork.GetRepository<Memo>();
 				var memo = await repo.GetFirstOrDefaultAsync(predicate: x => x.ID.Equals(dbMemo.ID));
 
+				if (memo == null)
+					return new ApiResponse("Specified Memo doesn't exist");
+				
 				memo.Title = dbMemo.Title;
 				memo.Content = dbMemo.Content;
 				memo.UpdatedTime = DateTime.Now;
