@@ -105,15 +105,15 @@ namespace SimpleToDo.Api.Service
 		{
 			try
 			{
-				var dbEntity = _mapper.Map<TEntity>(model);
+				var mappedEntity = _mapper.Map<TEntity>(model);
 				var repo = _unitOfWork.GetRepository<TEntity>();
-				var entity = await repo.GetFirstOrDefaultAsync(predicate: x => x.ID.Equals(dbEntity.ID));
+				var entity = await repo.GetFirstOrDefaultAsync(predicate: x => x.ID.Equals(mappedEntity.ID));
 
 				// Repository may not contain specified data!
 				if (entity == null)
 					return new ApiResponse("Specified Entity doesn't exist");
 
-				UpdateEntity(entity, dbEntity);
+				UpdateEntity(entity, mappedEntity);
 				repo.Update(entity);
 
 				if (await _unitOfWork.SaveChangesAsync() > 0)

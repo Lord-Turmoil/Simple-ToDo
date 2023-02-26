@@ -16,10 +16,10 @@ namespace SimpleToDo.Api.Service
 			return entity.Title.Contains(search) || entity.Content.Contains(search);
 		}
 
-		protected override void UpdateEntity(Memo entity, Memo dbEntity)
+		protected override void UpdateEntity(Memo entity, Memo mappedEntity)
 		{
-			entity.Title = dbEntity.Title;
-			entity.Content = dbEntity.Content;
+			entity.Title = mappedEntity.Title;
+			entity.Content = mappedEntity.Content;
 			entity.UpdatedTime = DateTime.Now;
 		}
 	}
