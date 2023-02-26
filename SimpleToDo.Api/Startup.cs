@@ -28,8 +28,10 @@ namespace SimpleToDo.Api
 			.AddCustomRepository<Memo, MemoRepository>()
 			.AddCustomRepository<User, UserRepository>();
 
+			// Register service, or they will not be resolved.
 			services.AddTransient<IEntityService<ToDoDto>, ToDoService>();
 			services.AddTransient<IEntityService<MemoDto>, MemoService>();
+			services.AddTransient<ILoginService, LoginService>();
 
 			// Add auto mapper.
 			var autoMapperConfig = new MapperConfiguration(config => {
