@@ -51,7 +51,7 @@ namespace SimpleToDo.Api.Migrations
                     ID = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Account = table.Column<string>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Username = table.Column<string>(type: "TEXT", nullable: false),
                     Password = table.Column<string>(type: "TEXT", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "TEXT", nullable: false),
                     UpdatedTime = table.Column<DateTime>(type: "TEXT", nullable: false)

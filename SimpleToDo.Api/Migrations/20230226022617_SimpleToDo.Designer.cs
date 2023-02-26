@@ -11,7 +11,7 @@ using SimpleToDo.Api.Context;
 namespace SimpleToDo.Api.Migrations
 {
     [DbContext(typeof(SimpleToDoContext))]
-    [Migration("20230223151439_SimpleToDo")]
+    [Migration("20230226022617_SimpleToDo")]
     partial class SimpleToDo
     {
         /// <inheritdoc />
@@ -86,15 +86,15 @@ namespace SimpleToDo.Api.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("UpdatedTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("ID");

@@ -83,15 +83,15 @@ namespace SimpleToDo.Api.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("UpdatedTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("ID");
