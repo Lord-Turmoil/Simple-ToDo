@@ -68,24 +68,8 @@ namespace SimpleToDo.Api.Service
 			}
 		}
 
-		public async Task<ApiResponse> GetAllAsync(QueryParameter parameter)
-		{
-			try
-			{
-				var repo = _unitOfWork.GetRepository<TEntity>();
-				var entities = await repo.GetPagedListAsync(
-					predicate: x => string.IsNullOrWhiteSpace(parameter.Search) ? true : MatchSearch(x, parameter.Search),
-					pageSize: parameter.PageSize,
-					pageIndex: parameter.PageIndex,
-					orderBy: result => result.OrderByDescending(x => x.CreatedTime));
-
-				return new ApiResponse(entities);
-			}
-			catch (Exception ex)
-			{
-				return new ApiResponse(ex.Message);
-			}
-		}
+		// LINQ cannot translate template virtual function...
+		public abstract Task<ApiResponse> GetAllAsync(QueryParameter parameter);
 
 		public async Task<ApiResponse> GetAsync(int id)
 		{
@@ -113,7 +97,7 @@ namespace SimpleToDo.Api.Service
 				if (entity == null)
 					return new ApiResponse("Specified Entity doesn't exist");
 
-				UpdateEntity(entity, mappedEntity);
+				_UpdateEntity(entity, mappedEntity);
 				repo.Update(entity);
 
 				if (await _unitOfWork.SaveChangesAsync() > 0)
@@ -126,7 +110,6 @@ namespace SimpleToDo.Api.Service
 			}
 		}
 		
-		protected abstract bool MatchSearch(TEntity entity, string search);
-		protected abstract void UpdateEntity(TEntity entity, TEntity dbEntity);
+		protected abstract void _UpdateEntity(TEntity entity, TEntity dbEntity);
 	}
 }

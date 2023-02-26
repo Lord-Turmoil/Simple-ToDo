@@ -2,6 +2,7 @@
 using AutoMapper;
 using SimpleToDo.Api.Context;
 using SimpleToDo.Shared.Dtos;
+using SimpleToDo.Shared.Parameters;
 using System.Reflection.Metadata.Ecma335;
 
 namespace SimpleToDo.Api.Service
@@ -12,12 +13,27 @@ namespace SimpleToDo.Api.Service
 		{
 		}
 
-		protected override bool MatchSearch(ToDo entity, string search)
+		public override async Task<ApiResponse> GetAllAsync(QueryParameter parameter)
 		{
-			return entity.Title.Contains(search) || entity.Content.Contains(search);
+			try
+			{
+				var repo = _unitOfWork.GetRepository<ToDo>();
+				var entities = await repo.GetPagedListAsync(
+					predicate: x => string.IsNullOrWhiteSpace(parameter.Search) ||
+						x.Title.Contains(parameter.Search) || x.Content.Contains(parameter.Search),
+					pageSize: parameter.PageSize,
+					pageIndex: parameter.PageIndex,
+					orderBy: result => result.OrderByDescending(x => x.CreatedTime));
+
+				return new ApiResponse(entities);
+			}
+			catch (Exception ex)
+			{
+				return new ApiResponse(ex.Message);
+			}
 		}
 
-		protected override void UpdateEntity(ToDo entity, ToDo mappedEntity)
+		protected override void _UpdateEntity(ToDo entity, ToDo mappedEntity)
 		{
 			entity.Title = mappedEntity.Title;
 			entity.Content = mappedEntity.Content;
