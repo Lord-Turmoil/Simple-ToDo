@@ -360,3 +360,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+SimpleToDo.Api/Migrations
+SimpleToDo.Api/*.db
+SimpleToDo.Api/*.db-shm
+SimpleToDo.Api/*.db-wal
