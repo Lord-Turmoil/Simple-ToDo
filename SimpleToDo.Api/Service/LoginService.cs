@@ -4,6 +4,7 @@ using SimpleToDo.Api.Context;
 using SimpleToDo.Shared.Dtos;
 using System.Security.Principal;
 using System;
+using SimpleToDo.Shared;
 
 namespace SimpleToDo.Api.Service
 {

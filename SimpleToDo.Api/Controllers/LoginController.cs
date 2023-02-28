@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SimpleToDo.Api.Service;
+using SimpleToDo.Shared;
 using SimpleToDo.Shared.Dtos;
 
 namespace SimpleToDo.Api.Controllers

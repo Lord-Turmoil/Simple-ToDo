@@ -1,6 +1,7 @@
 ﻿using Arch.EntityFrameworkCore.UnitOfWork;
 using AutoMapper;
 using SimpleToDo.Api.Context;
+using SimpleToDo.Shared;
 using SimpleToDo.Shared.Dtos;
 using SimpleToDo.Shared.Parameters;
 using System.Reflection.Metadata.Ecma335;

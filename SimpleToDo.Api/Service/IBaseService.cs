@@ -1,4 +1,5 @@
-﻿using SimpleToDo.Shared.Parameters;
+﻿using SimpleToDo.Shared;
+using SimpleToDo.Shared.Parameters;
 
 namespace SimpleToDo.Api.Service
 {

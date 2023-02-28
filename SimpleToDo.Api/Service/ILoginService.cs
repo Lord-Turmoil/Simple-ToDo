@@ -1,4 +1,5 @@
-﻿using SimpleToDo.Shared.Dtos;
+﻿using SimpleToDo.Shared;
+using SimpleToDo.Shared.Dtos;
 
 namespace SimpleToDo.Api.Service
 {
