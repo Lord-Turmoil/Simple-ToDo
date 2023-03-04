@@ -1,5 +1,4 @@
-﻿using Arch.EntityFrameworkCore.UnitOfWork.Collections;
-using SimpleToDo.Shared;
+﻿using SimpleToDo.Shared;
 using SimpleToDo.Shared.Parameters;
 using System;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ namespace SimpleToDo.Service
 {
 	public class BaseService<TEntity> : IBaseService<TEntity> where TEntity : class
 	{
-		private readonly HttpRestClient _client;
+		protected readonly HttpRestClient _client;
 		private readonly string _serviceName;
 
 		public BaseService(HttpRestClient client, string serviceName)

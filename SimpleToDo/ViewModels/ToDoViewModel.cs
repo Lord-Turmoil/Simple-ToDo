@@ -1,6 +1,9 @@
 ﻿using Prism.Commands;
+using Prism.Ioc;
 using Prism.Mvvm;
 using SimpleToDo.Common.Models;
+using SimpleToDo.Service;
+using SimpleToDo.Shared.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,6 +15,20 @@ namespace SimpleToDo.ViewModels
 {
 	public class ToDoViewModel : BindableBase
 	{
+		public ToDoViewModel(IToDoService service)
+		{
+			_service = service;
+
+			_toDoDtos = new ObservableCollection<ToDoDto>();
+			// _CreateDefaultToDoList();
+			_CreateToDoList();
+
+			AddCommand = new DelegateCommand(_Add);
+			IsRightDrawerOpen = false;
+		}
+
+		private readonly IToDoService _service;
+
 		private ObservableCollection<ToDoDto> _toDoDtos;
 		public ObservableCollection<ToDoDto> ToDoDtos
 		{
@@ -30,14 +47,6 @@ namespace SimpleToDo.ViewModels
 			get { return _isRightDrawerOpen; }
 		}
 
-		public ToDoViewModel()
-		{
-			_toDoDtos = new ObservableCollection<ToDoDto>();
-			_CreateDefaultToDoList();
-			AddCommand = new DelegateCommand(_Add);
-			IsRightDrawerOpen = false;
-		}
-
 		private void _Add()
 		{
 			IsRightDrawerOpen = !IsRightDrawerOpen;
@@ -52,6 +61,24 @@ namespace SimpleToDo.ViewModels
 					Title = "Todo " + i,
 					Content = i.ToString() + " is not completed."
 				});
+			}
+		}
+
+		private async void _CreateToDoList()
+		{
+			var todos = await _service.GetAllAsync(new QueryParameter()
+			{
+				PageIndex = 0,
+				PageSize = 100
+			});
+
+			if (todos.Status)
+			{
+				ToDoDtos.Clear();
+				foreach (var item in todos.Result.Items)
+				{
+					ToDoDtos.Add(item);
+				}
 			}
 		}
 	}

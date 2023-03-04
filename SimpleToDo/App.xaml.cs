@@ -1,7 +1,9 @@
-﻿using Prism.DryIoc;
+﻿using DryIoc;
+using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Regions;
 using SimpleToDo.Extensions;
+using SimpleToDo.Service;
 using SimpleToDo.ViewModels;
 using SimpleToDo.Views;
 using System;
@@ -26,6 +28,12 @@ namespace SimpleToDo
 
 		protected override void RegisterTypes(IContainerRegistry containerRegistry)
 		{
+			containerRegistry.GetContainer().Register<HttpRestClient>(made: Parameters.Of.Type<string>(serviceKey: "WebUrl"));
+			containerRegistry.GetContainer().RegisterInstance(@"http://localhost:16169/", serviceKey: "WebUrl");
+
+			containerRegistry.Register<IToDoService, ToDoService>();
+
+
 			containerRegistry.RegisterForNavigation<IndexView, IndexViewModel>();
 			containerRegistry.RegisterForNavigation<MemoView, MemoViewModel>();
 			containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
