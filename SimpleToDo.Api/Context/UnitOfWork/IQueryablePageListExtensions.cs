@@ -3,8 +3,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using SimpleToDo.Shared;
 
-namespace Arch.EntityFrameworkCore.UnitOfWork.Collections
+namespace SimpleToDo.Api.Context.UnitOfWork
 {
     public static class IQueryablePageListExtensions
     {
@@ -20,7 +21,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork.Collections
         /// </param>
         /// <param name="indexFrom">The start index value.</param>
         /// <returns>An instance of the inherited from <see cref="IPagedList{T}"/> interface.</returns>
-        public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> source, int pageIndex, int pageSize, int indexFrom = 0, CancellationToken cancellationToken = default(CancellationToken))
+        public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> source, int pageIndex, int pageSize, int indexFrom = 0, CancellationToken cancellationToken = default)
         {
             if (indexFrom > pageIndex)
             {

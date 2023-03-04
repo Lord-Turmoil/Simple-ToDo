@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace Arch.EntityFrameworkCore.UnitOfWork
+namespace SimpleToDo.Api.Context.UnitOfWork
 {
     /// <summary>
     /// Defines the interfaces for <see cref="IRepository{TEntity}"/> interfaces.

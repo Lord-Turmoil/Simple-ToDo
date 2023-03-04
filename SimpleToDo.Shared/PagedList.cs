@@ -1,14 +1,15 @@
-﻿/*
-namespace SimpleToDo.Shared.Contact
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+﻿// Copyright (c) Arch team. All rights reserved.
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace SimpleToDo.Shared
+{
     /// <summary>
     /// Represents the default implementation of the <see cref="IPagedList{T}"/> interface.
     /// </summary>
-    /// <typeparam name="T">The type of the data to page.</typeparam>
+    /// <typeparam name="T">The type of the data to page</typeparam>
     public class PagedList<T> : IPagedList<T>
     {
         /// <summary>
@@ -16,25 +17,21 @@ namespace SimpleToDo.Shared.Contact
         /// </summary>
         /// <value>The index of the page.</value>
         public int PageIndex { get; set; }
-
         /// <summary>
         /// Gets or sets the size of the page.
         /// </summary>
         /// <value>The size of the page.</value>
         public int PageSize { get; set; }
-        
         /// <summary>
         /// Gets or sets the total count.
         /// </summary>
         /// <value>The total count.</value>
         public int TotalCount { get; set; }
-        
         /// <summary>
         /// Gets or sets the total pages.
         /// </summary>
         /// <value>The total pages.</value>
         public int TotalPages { get; set; }
-        
         /// <summary>
         /// Gets or sets the index from.
         /// </summary>
@@ -114,25 +111,21 @@ namespace SimpleToDo.Shared.Contact
         /// </summary>
         /// <value>The index of the page.</value>
         public int PageIndex { get; }
-
         /// <summary>
         /// Gets the size of the page.
         /// </summary>
         /// <value>The size of the page.</value>
         public int PageSize { get; }
-
         /// <summary>
         /// Gets the total count.
         /// </summary>
         /// <value>The total count.</value>
         public int TotalCount { get; }
-
         /// <summary>
         /// Gets the total pages.
         /// </summary>
         /// <value>The total pages.</value>
         public int TotalPages { get; }
-
         /// <summary>
         /// Gets the index from.
         /// </summary>
@@ -237,4 +230,3 @@ namespace SimpleToDo.Shared.Contact
         public static IPagedList<TResult> From<TResult, TSource>(IPagedList<TSource> source, Func<IEnumerable<TSource>, IEnumerable<TResult>> converter) => new PagedList<TSource, TResult>(source, converter);
     }
 }
-*/

@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace Arch.EntityFrameworkCore.UnitOfWork
+namespace SimpleToDo.Api.Context.UnitOfWork
 {
     using System;
     using System.Linq;

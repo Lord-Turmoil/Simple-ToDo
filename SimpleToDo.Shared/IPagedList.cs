@@ -1,8 +1,9 @@
-﻿/*
-namespace SimpleToDo.Shared.Contact
-{
+﻿// Copyright (c) Arch team. All rights reserved.
 
-    using System.Collections.Generic;
+using System.Collections.Generic;
+
+namespace SimpleToDo.Shared
+{
     /// <summary>
     /// Provides the interface(s) for paged list of any type.
     /// </summary>
@@ -14,32 +15,26 @@ namespace SimpleToDo.Shared.Contact
         /// </summary>
         /// <value>The index start value.</value>
         int IndexFrom { get; }
-
         /// <summary>
         /// Gets the page index (current).
         /// </summary>
         int PageIndex { get; }
-        
         /// <summary>
         /// Gets the page size.
         /// </summary>
         int PageSize { get; }
-        
         /// <summary>
         /// Gets the total count of the list of type <typeparamref name="T"/>
         /// </summary>
         int TotalCount { get; }
-        
         /// <summary>
         /// Gets the total pages.
         /// </summary>
         int TotalPages { get; }
-
         /// <summary>
         /// Gets the current page items.
         /// </summary>
         IList<T> Items { get; }
-        
         /// <summary>
         /// Gets the has previous page.
         /// </summary>
@@ -53,4 +48,3 @@ namespace SimpleToDo.Shared.Contact
         bool HasNextPage { get; }
     }
 }
-*/

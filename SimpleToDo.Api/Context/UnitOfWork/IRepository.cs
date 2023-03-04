@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace Arch.EntityFrameworkCore.UnitOfWork
+namespace SimpleToDo.Api.Context.UnitOfWork
 {
     using System;
     using System.Collections.Generic;
@@ -13,15 +13,15 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore.Query;
-    using Arch.EntityFrameworkCore.UnitOfWork.Collections;
     using Microsoft.EntityFrameworkCore.ChangeTracking;
     using Microsoft.EntityFrameworkCore;
+	using SimpleToDo.Shared;
 
-    /// <summary>
-    /// Defines the interfaces for generic repository.
-    /// </summary>
-    /// <typeparam name="TEntity">The type of the entity.</typeparam>
-    public interface IRepository<TEntity> where TEntity : class
+	/// <summary>
+	/// Defines the interfaces for generic repository.
+	/// </summary>
+	/// <typeparam name="TEntity">The type of the entity.</typeparam>
+	public interface IRepository<TEntity> where TEntity : class
     {
         /// <summary>
         /// Changes the table name. This require the tables in the same database.

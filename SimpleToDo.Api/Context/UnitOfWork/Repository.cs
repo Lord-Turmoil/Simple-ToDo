@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Query;
-using Arch.EntityFrameworkCore.UnitOfWork.Collections;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using SimpleToDo.Shared;
 
-namespace Arch.EntityFrameworkCore.UnitOfWork
+namespace SimpleToDo.Api.Context.UnitOfWork
 {
     /// <summary>
     /// Represents a default generic repository implements the <see cref="IRepository{TEntity}"/> interface.
