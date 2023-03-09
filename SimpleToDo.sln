@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleToDo", "SimpleToDo\Si
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleToDo.Api", "SimpleToDo.Api\SimpleToDo.Api.csproj", "{199F2BDD-778B-420E-BF17-613074ABF523}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleToDo.Shared", "SimpleToDo.Shared\SimpleToDo.Shared.csproj", "{A9B5C008-B4EF-4799-B89A-42616507CBB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleToDo.Shared", "SimpleToDo.Shared\SimpleToDo.Shared.csproj", "{A9B5C008-B4EF-4799-B89A-42616507CBB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

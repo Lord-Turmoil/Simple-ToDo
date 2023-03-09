@@ -33,6 +33,7 @@ namespace SimpleToDo.Api
 			services.AddTransient<IEntityService<MemoDto>, MemoService>();
 			services.AddTransient<ILoginService, LoginService>();
 
+
 			// Add auto mapper.
 			var autoMapperConfig = new MapperConfiguration(config => {
 				config.AddProfile(new AutoMapperProfile());

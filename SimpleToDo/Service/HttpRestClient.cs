@@ -33,7 +33,7 @@ namespace SimpleToDo.Service
 				restRequest.AddParameter("param", JsonConvert.SerializeObject(request.Parameter));
 
 			RestResponse response = await _client.ExecuteAsync(restRequest);
-
+			
 			return JsonConvert.DeserializeObject<ApiResponse>(response.Content);
 		}
 
@@ -46,9 +46,8 @@ namespace SimpleToDo.Service
 				restRequest.AddParameter("param", JsonConvert.SerializeObject(request.Parameter));
 
 			RestResponse response = await _client.ExecuteAsync<TResult>(restRequest);
-
+			
 			return JsonConvert.DeserializeObject<ApiResponse<TResult>>(response.Content);
 		}
-
 	}
 }
