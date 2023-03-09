@@ -13,6 +13,7 @@ namespace SimpleToDo.Service
 		Task<ApiResponse<TEntity>> AddAsync(TEntity entity);
 		Task<ApiResponse<TEntity>> UpdateAsync(TEntity entity);
 		Task<ApiResponse> DeleteAsync(int id);
+		Task<ApiResponse> DeleteAllAsync();
 		Task<ApiResponse<TEntity>> GetFirstOrDefaultAsync(int id);
 		Task<ApiResponse<PagedList<TEntity>>> GetAllAsync(QueryParameter parameter);
 	}

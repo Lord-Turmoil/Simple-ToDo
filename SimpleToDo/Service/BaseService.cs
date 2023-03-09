@@ -38,6 +38,15 @@ namespace SimpleToDo.Service
 			return await _client.ExecuteAsync(request);
 		}
 
+		public async Task<ApiResponse> DeleteAllAsync()
+		{
+			BaseRequest request = new BaseRequest();
+			request.Method = RestSharp.Method.Delete;
+			request.Route = $"api/{_serviceName}/DeleteAll";
+
+			return await _client.ExecuteAsync(request);
+		}
+
 		private string _BuildGetAllRoute(QueryParameter parameter)
 		{
 			return new StringBuilder()
