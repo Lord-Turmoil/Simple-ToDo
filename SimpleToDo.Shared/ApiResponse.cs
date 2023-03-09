@@ -33,6 +33,8 @@ namespace SimpleToDo.Shared
 		public string? Message { get; set; }
 		public TResult? Result { get; set; }
 
+		public ApiResponse() { }
+
 		public ApiResponse(string message, bool status = false)
 		{
 			Status = status;

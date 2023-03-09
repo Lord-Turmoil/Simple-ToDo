@@ -52,8 +52,8 @@ namespace SimpleToDo.Service
 			return new StringBuilder()
 				.Append($"api/{_serviceName}/GetAll?")
 				.Append($"pageIndex={parameter.PageIndex}")
-				.Append($"pageSize={parameter.PageSize}")
-				.Append($"search={parameter.Search}").ToString();
+				.Append($"&pageSize={parameter.PageSize}")
+				.Append($"&search={parameter.Search}").ToString();
 		}
 
 		public async Task<ApiResponse<PagedList<TEntity>>> GetAllAsync(QueryParameter parameter)
