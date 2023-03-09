@@ -1,8 +1,10 @@
 ﻿using Prism.Commands;
+using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Regions;
 using SimpleToDo.Common.Models;
 using SimpleToDo.Extensions;
+using SimpleToDo.Service;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,12 +23,14 @@ namespace SimpleToDo.ViewModels
 			get { return _menuBars; }
 		}
 
+		private readonly IContainerProvider _containerProvider;
 		/// <summary>
 		/// !!! IRegionManager! IRegionManager! IRegionManager! Interface!!!
 		/// </summary>
 		/// <param name="regionManager">Interface!!!</param>
-		public MainViewModel(IRegionManager regionManager)
+		public MainViewModel(IContainerProvider containerProvider, IRegionManager regionManager)
 		{
+			_containerProvider = containerProvider;
 			_regionManager = regionManager;
 
 			_menuBars = new ObservableCollection<MenuBar>();

@@ -14,14 +14,28 @@ namespace SimpleToDo.Service
 		private readonly string _apiUrl;
 		private readonly RestClient _client;
 
+		/// <summary>
+		/// If this one fails, all classes depends on this will not
+		/// be resolve through IoC as a consequence!
+		/// </summary>
+		/// <param name="apiUrl"></param>
 		public HttpRestClient(string apiUrl)
 		{
 			_apiUrl = apiUrl;
+
+			/*
+			 * 2023/03/09 TS:
+			 * Parameter baseUri of RestClientOptions must not be
+			 * null or whitespace! :(
+			 * 
 			var options = new RestClientOptions("")
 			{
 				MaxTimeout = -1
 			};
 			_client = new RestClient(options);
+			*/
+
+			_client = new RestClient();
 		}
 
 		public async Task<ApiResponse> ExecuteAsync(BaseRequest request)

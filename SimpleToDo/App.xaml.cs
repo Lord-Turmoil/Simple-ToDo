@@ -28,11 +28,11 @@ namespace SimpleToDo
 
 		protected override void RegisterTypes(IContainerRegistry containerRegistry)
 		{
-			containerRegistry.GetContainer().Register<HttpRestClient>(made: Parameters.Of.Type<string>(serviceKey: "WebUrl"));
+			containerRegistry.GetContainer()
+				.Register<HttpRestClient>(made: Parameters.Of.Type<string>(serviceKey: "WebUrl"));
 			containerRegistry.GetContainer().RegisterInstance(@"http://localhost:16169/", serviceKey: "WebUrl");
 
 			containerRegistry.Register<IToDoService, ToDoService>();
-
 
 			containerRegistry.RegisterForNavigation<IndexView, IndexViewModel>();
 			containerRegistry.RegisterForNavigation<MemoView, MemoViewModel>();
@@ -42,6 +42,11 @@ namespace SimpleToDo
 			containerRegistry.RegisterForNavigation<SkinView, SkinViewModel>();
 			containerRegistry.RegisterForNavigation<SystemView, SystemViewModel>();
 			containerRegistry.RegisterForNavigation<AboutView, AboutViewModel>();
+
+			if (containerRegistry.IsRegistered<HttpRestClient>())
+			{
+				var client = containerRegistry.GetContainer().Resolve<HttpRestClient>();
+			}
 		}
 	}
 }

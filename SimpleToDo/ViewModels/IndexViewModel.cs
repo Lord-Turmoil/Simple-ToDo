@@ -1,5 +1,7 @@
-﻿using Prism.Mvvm;
+﻿using Prism.Ioc;
+using Prism.Mvvm;
 using SimpleToDo.Common.Models;
+using SimpleToDo.Service;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -33,8 +35,12 @@ namespace SimpleToDo.ViewModels
 			get { return _memoDtos; }
 		}
 
-		public IndexViewModel()
+		private readonly IToDoService _toDoService;
+
+		public IndexViewModel(IContainerProvider containerProvider)
 		{
+			_toDoService = containerProvider.Resolve<IToDoService>();
+
 			_taskBars = new ObservableCollection<TaskBar>();
 			_CreateTaskBars();
 
