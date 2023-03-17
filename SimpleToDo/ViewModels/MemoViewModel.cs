@@ -1,6 +1,8 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
-using SimpleToDo.Common.Models;
+using SimpleToDo.Service;
+using SimpleToDo.Shared.Dtos;
+using SimpleToDo.Shared.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,6 +14,20 @@ namespace SimpleToDo.ViewModels
 {
 	public class MemoViewModel : BindableBase
 	{
+		public MemoViewModel(IMemoService service)
+		{
+			_service = service;
+
+			_memoDtos = new ObservableCollection<MemoDto>();
+			// _CreateDefaultMemoList();
+			_CreateMemoList();
+
+			AddCommand = new DelegateCommand(_Add);
+			IsRightDrawerOpen = false;
+		}
+
+		private readonly IMemoService _service;
+
 		private ObservableCollection<MemoDto> _memoDtos;
 		public ObservableCollection<MemoDto> MemoDtos
 		{
@@ -25,14 +41,6 @@ namespace SimpleToDo.ViewModels
 		{
 			set { _isRightDrawerOpen = value; RaisePropertyChanged(); }
 			get { return _isRightDrawerOpen; }
-		}
-
-		public MemoViewModel()
-		{
-			_memoDtos = new ObservableCollection<MemoDto>();
-			_CreateDefaultMemoList();
-			AddCommand = new DelegateCommand(_Add);
-			IsRightDrawerOpen = false;
 		}
 
 		private void _Add()
@@ -49,6 +57,24 @@ namespace SimpleToDo.ViewModels
 					Title = "Memo " + i,
 					Content = i.ToString() + " is a memo."
 				});
+			}
+		}
+
+		private async void _CreateMemoList()
+		{
+			var memos = await _service.GetAllAsync(new QueryParameter()
+			{
+				PageIndex = 0,
+				PageSize = 100
+			});
+
+			if (memos.Status)
+			{
+				MemoDtos.Clear();
+				foreach (var item in memos.Result.Items)
+				{
+					MemoDtos.Add(item);
+				}
 			}
 		}
 	}
