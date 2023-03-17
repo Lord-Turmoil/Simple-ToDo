@@ -2,6 +2,7 @@
 using Prism.Mvvm;
 using SimpleToDo.Common.Models;
 using SimpleToDo.Service;
+using SimpleToDo.Shared.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

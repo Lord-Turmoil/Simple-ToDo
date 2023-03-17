@@ -34,10 +34,10 @@ namespace SimpleToDo.ViewModels
 		private readonly PaletteHelper _paletteHelper = new PaletteHelper();
 
 		public SkinViewModel()
-        {
+		{
 			IsDarkTheme = true;
 			ChangeHueCommand = new DelegateCommand<object>(_ChangeHue);
-        }
+		}
 
 		private void _ChangeHue(object obj)
 		{

@@ -1,8 +1,7 @@
 ﻿using Prism.Commands;
-using Prism.Ioc;
 using Prism.Mvvm;
-using SimpleToDo.Common.Models;
 using SimpleToDo.Service;
+using SimpleToDo.Shared.Dtos;
 using SimpleToDo.Shared.Parameters;
 using System;
 using System.Collections.Generic;
