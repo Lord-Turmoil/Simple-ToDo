@@ -30,9 +30,9 @@
     </WindowChrome.WindowChrome>
     <Border x:Name="mainWindowBorder">
         <md:DialogHost
+            x:Name="DialogHost"
             DialogTheme="Inherit"
-            Identifier="RootDialog"
-            SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
+            Identifier="RootDialog">
 
             <md:DrawerHost x:Name="drawerHost" IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
                 <md:DrawerHost.LeftDrawerContent>

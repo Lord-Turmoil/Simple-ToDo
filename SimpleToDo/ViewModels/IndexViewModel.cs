@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SimpleToDo.ViewModels
 {
-	public class IndexViewModel : BindableBase
+	public class IndexViewModel : NavigationViewModel
 	{
 		private ObservableCollection<TaskBar> _taskBars;
 		public ObservableCollection<TaskBar> TaskBars
@@ -36,12 +36,9 @@ namespace SimpleToDo.ViewModels
 			get { return _memoDtos; }
 		}
 
-		private readonly IToDoService _toDoService;
-
-		public IndexViewModel(IContainerProvider containerProvider)
+		public IndexViewModel(IContainerProvider provider, IContainerProvider containerProvider)
+			: base(provider)
 		{
-			_toDoService = containerProvider.Resolve<IToDoService>();
-
 			_taskBars = new ObservableCollection<TaskBar>();
 			_CreateTaskBars();
 

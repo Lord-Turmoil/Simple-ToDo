@@ -1,4 +1,5 @@
 ﻿using DryIoc;
+using Prism.Events;
 using Prism.Regions;
 using SimpleToDo.Extensions;
 using SimpleToDo.ViewModels;
@@ -23,9 +24,19 @@ namespace SimpleToDo.Views
 	/// </summary>
 	public partial class MainView : Window
 	{
-		public MainView()
+		public MainView(IEventAggregator aggregator)
 		{
 			InitializeComponent();
+
+			// Register loading view.
+			aggregator.Register(arg => {
+				DialogHost.IsOpen = arg.IsOpen;
+
+				if (DialogHost.IsOpen)
+				{
+					DialogHost.DialogContent = new ProgressView();
+				}
+			});
 
 			this.MaxHeight = SystemParameters.PrimaryScreenHeight;
 
@@ -47,8 +58,7 @@ namespace SimpleToDo.Views
 			btnRestore.Click += (s, e) => { SystemCommands.RestoreWindow(this); };
 			btnMinimize.Click += (s, e) => { SystemCommands.MinimizeWindow(this); };
 
-			menuBar.SelectionChanged += (s, e) =>
-			{
+			menuBar.SelectionChanged += (s, e) => {
 				drawerHost.IsLeftDrawerOpen = false;
 			};
 		}

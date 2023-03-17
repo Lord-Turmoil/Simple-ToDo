@@ -1,4 +1,5 @@
 ﻿using Prism.Commands;
+using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Regions;
 using SimpleToDo.Common.Models;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace SimpleToDo.ViewModels
 {
-	public class SettingsViewModel : BindableBase
+	public class SettingsViewModel : NavigationViewModel
 	{
 		private ObservableCollection<MenuBar> _menuBars;
 		public ObservableCollection<MenuBar> MenuBars
@@ -24,7 +25,8 @@ namespace SimpleToDo.ViewModels
 		public DelegateCommand<MenuBar> NavigateCommand { get; private set; }
 		private IRegionManager _regionManager;
 
-		public SettingsViewModel(IRegionManager regionManager)
+		public SettingsViewModel(IContainerProvider provider, IRegionManager regionManager)
+			: base(provider)
 		{
 			_regionManager = regionManager;
 

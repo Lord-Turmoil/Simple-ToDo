@@ -1,5 +1,7 @@
 ﻿using Prism.Commands;
+using Prism.Ioc;
 using Prism.Mvvm;
+using Prism.Regions;
 using SimpleToDo.Service;
 using SimpleToDo.Shared.Dtos;
 using SimpleToDo.Shared.Parameters;
@@ -8,19 +10,19 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SimpleToDo.ViewModels
 {
-	public class ToDoViewModel : BindableBase
+	public class ToDoViewModel : NavigationViewModel
 	{
-		public ToDoViewModel(IToDoService service)
+		public ToDoViewModel(IContainerProvider provider, IToDoService service)
+			: base(provider)
 		{
 			_service = service;
 
 			_toDoDtos = new ObservableCollection<ToDoDto>();
-			// _CreateDefaultToDoList();
-			_CreateToDoList();
 
 			AddCommand = new DelegateCommand(_Add);
 			IsRightDrawerOpen = false;
@@ -63,8 +65,10 @@ namespace SimpleToDo.ViewModels
 			}
 		}
 
-		private async void _CreateToDoList()
+		private async void _GetDataAsync()
 		{
+			UpdateLoading(true);
+
 			var todos = await _service.GetAllAsync(new QueryParameter()
 			{
 				PageIndex = 0,
@@ -79,6 +83,15 @@ namespace SimpleToDo.ViewModels
 					ToDoDtos.Add(item);
 				}
 			}
+
+			UpdateLoading(false);
+		}
+
+		public override void OnNavigatedTo(NavigationContext navigationContext)
+		{
+			base.OnNavigatedTo(navigationContext);
+
+			 _GetDataAsync();
 		}
 	}
 }
