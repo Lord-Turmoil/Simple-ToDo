@@ -15,6 +15,8 @@ namespace SimpleToDo.Shared.Dtos
 	public class BaseDto : INotifyPropertyChanged
 	{
 		public int ID { get; set; }
+		public DateTime CreatedTime { get; set; }
+		public DateTime UpdatedTime { get; set; }
 
 		public event PropertyChangedEventHandler? PropertyChanged;
 
